@@ -1,4 +1,6 @@
-export const questions = {
+import { Questionnaire } from 'src/app/interfaces/form-controls';
+
+export const Questions: Questionnaire = {
   resourceType: 'Questionnaire',
   id: 'f201',
   url: 'http://hl7.org/fhir/Questionnaire/f201',

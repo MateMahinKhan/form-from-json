@@ -1,0 +1,33 @@
+<div class="form-question-container" [formGroup]="form">
+  <label [attr.for]="question.key"> {{ question.label }} </label>
+
+  <div class="control-container" [ngSwitch]="question.controlType">
+
+    <!-- textbox input -->
+    <input *ngSwitchCase="'textbox'" [formControlName]="question.key"
+          [id]="question.key" [type]="question.type">
+    
+    <!-- checkbox input -->
+    <input 
+      *ngSwitchCase="'checkbox'" 
+      [formControlName]="question.key"
+      [id]="question.key" 
+      type="checkbox"
+      [checked]="question.value">
+
+    <!-- date input -->
+    <input 
+      *ngSwitchCase="'date'" 
+      type="date" 
+      [formControlName]="question.key"
+      [max]="getMaxDate()">
+
+    <!-- select input -->
+    <select [id]="question.key" *ngSwitchCase="'dropdown'" [formControlName]="question.key">
+      <option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</option>
+    </select>
+
+  </div>
+
+  <div class="errorMessage" *ngIf="!isValid && isTouched">{{question.label}} is required</div>
+</div>

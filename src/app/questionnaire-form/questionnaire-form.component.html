@@ -1,0 +1,20 @@
+<div>
+  <!-- form is created  -->
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+
+    <div *ngFor="let question of questions" class="form-row">
+      <!-- each question is rendered using a reusable component -->
+      <app-question [question]="question" [form]="form"></app-question>
+    </div>
+
+    <div class="form-row">
+      <button type="submit" [disabled]="!form.valid">Save</button>
+    </div>
+  </form>
+
+  <div *ngIf="payLoadString" class="form-row">
+    <strong>Saved the following values</strong>
+    <br>
+    {{ payLoadString }}
+  </div>
+</div>
